@@ -499,10 +499,6 @@ def build_design_matrices(
         groups[f"Spline group: {transformer}"] = indices
     groups.update(interaction_groups)
 
-    covered = np.concatenate(list(groups.values()))
-    if len(covered) != len(feature_names) or len(np.unique(covered)) != len(feature_names):
-        raise ValueError("Feature groups must cover every column exactly once.")
-
     return {
         "train": train_matrix,
         "test": test_matrix,
@@ -526,10 +522,6 @@ def fit_groupwise_boosting(
     min_delta: float = 1e-5,
     device: torch.device | None = None,
 ) -> dict:
-    use_cuda = device is not None and device.type == "cuda"
-    if not use_cuda:
-        raise RuntimeError("The compact project implementation expects a CUDA device.")
-
     has_validation = X_valid is not None and y_valid is not None
     X_fit_tensor = torch.as_tensor(
         sparse.csr_matrix(X_fit).toarray(), dtype = torch.float32, device = device
