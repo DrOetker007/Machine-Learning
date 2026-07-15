@@ -1,0 +1,16 @@
+--extra-index-url https://download.pytorch.org/whl/cu121
+
+catboost==1.2.10
+clip @ git+https://github.com/openai/CLIP.git@d05afc436d78f1c48dc0dbf8e5980a9d471f35f6
+ipykernel==6.30.1
+jupyterlab==4.4.7
+matplotlib==3.10.8
+numpy==1.26.4
+pandas==2.3.2
+pillow==12.2.0
+requests==2.32.5
+scikit-learn==1.7.2
+scipy==1.15.3
+seaborn==0.13.2
+torch==2.5.1+cu121
+torchvision==0.20.1+cu121
